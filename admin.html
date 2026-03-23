@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Produits | Matériaux Pro Bâtiment</title>
+    <meta name="description" content="Gestion des produits du catalogue Matériaux Pro Bâtiment." />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-page">
+    <header class="admin-header">
+      <div class="container admin-header-inner">
+        <div>
+          <p class="section-kicker">Administration</p>
+          <h1>Gérer les produits</h1>
+          <p>Ajoutez, modifiez ou supprimez les produits affichés sur la page principale.</p>
+        </div>
+        <div class="admin-header-actions">
+          <a href="index.html#materiaux" class="btn btn-secondary">Voir le site</a>
+          <button type="button" class="btn btn-primary" id="reset-catalog">Importer catalogue par défaut</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <section class="admin-grid">
+        <article class="admin-card">
+          <h2 id="admin-form-title">Ajouter un produit</h2>
+          <form id="product-form" class="admin-form">
+            <label>
+              Type
+              <input type="text" name="type" placeholder="Ex: Plaque" required />
+            </label>
+            <label>
+              Nom du produit
+              <input type="text" name="name" placeholder="Ex: Plaque de plâtre Knauf BA13" required />
+            </label>
+            <label>
+              Détails
+              <input type="text" name="details" placeholder="Ex: Dimensions : L 1.20 m x H 2.60 m" required />
+            </label>
+            <label>
+              Prix
+              <input type="text" name="price" placeholder="Ex: 13,99 €" required />
+            </label>
+            <label>
+              Image (depuis ordinateur)
+              <input type="file" name="imageFile" accept="image/*" />
+            </label>
+            <label>
+              Image (chemin optionnel)
+              <input type="text" name="image" placeholder="Ex: photo/green.jpg" />
+            </label>
+            <label>
+              Texte alternatif image
+              <input type="text" name="alt" placeholder="Description de l’image" required />
+            </label>
+
+            <div class="admin-form-actions">
+              <button type="submit" class="btn btn-primary" id="save-product-btn">Ajouter</button>
+              <button type="button" class="btn btn-secondary" id="cancel-edit-btn">Annuler</button>
+            </div>
+          </form>
+        </article>
+
+        <article class="admin-card">
+          <h2>Liste des produits</h2>
+          <p class="admin-help">Les modifications sont enregistrées dans la base de données Firebase.</p>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="products-table">
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Type</th>
+                  <th>Prix</th>
+                  <th>Image</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-tbody"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="backend.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
