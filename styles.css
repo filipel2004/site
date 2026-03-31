@@ -970,8 +970,9 @@ select:focus-visible,
 }
 
 .contact-info-card p {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
   gap: 1rem;
   font-size: 0.98rem;
 }
@@ -979,6 +980,9 @@ select:focus-visible,
 .contact-info-card a,
 .contact-info-card span {
   text-align: right;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .contact-info-card a {
@@ -1961,5 +1965,15 @@ select:focus-visible,
     max-width: 110px;
     font-size: 0.72rem;
     padding: 0.5rem 0.65rem;
+  }
+
+  .contact-info-card p {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .contact-info-card a,
+  .contact-info-card span {
+    text-align: left;
   }
 }
