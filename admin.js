@@ -436,9 +436,11 @@ tbody.addEventListener("click", (event) => {
   }
 });
 
-resetCatalogButton.addEventListener("click", () => {
-  importDefaultCatalog();
-});
+if (resetCatalogButton) {
+  resetCatalogButton.addEventListener("click", () => {
+    importDefaultCatalog();
+  });
+}
 
 setAdminUiVisible(false);
 createLoginUi();

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Matériaux Pro Bâtiment | Vente de matériaux de construction</title>
+    <title>MatériauxPro</title>
     <meta
       name="description"
       content="Matériaux Pro Bâtiment fournit des matériaux de construction de qualité pour les professionnels et les particuliers."
@@ -28,7 +28,24 @@
         </ul>
       </nav>
 
-      <!-- Mascot SVG -->
+      <!-- Search Bar at Top -->
+      <div class="search-header-container">
+        <div class="search-wrapper">
+          <input 
+            type="text" 
+            id="product-search" 
+            class="search-bar-header" 
+            placeholder="Rechercher des produits..." 
+            aria-label="Rechercher les produits"
+          />
+          <button type="button" id="search-trigger" class="search-trigger" aria-label="Lancer la recherche">
+            🔍
+          </button>
+          <ul class="search-suggestions" id="search-suggestions"></ul>
+        </div>
+      </div>
+
+      <!-- Mascot SVG (desktop only) -->
       <div class="mascot-wrapper">
         <svg class="mascot" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -64,6 +81,11 @@
           🧱 Besoin d'aide? Explorez nos matériaux!
         </div>
       </div>
+
+      <!-- Floating Phone Button (mobile only) -->
+      <a id="floating-phone" class="floating-phone-btn" href="tel:VOTRE_NUMERO_ICE" title="Appelez-nous">
+        <span class="phone-icon">☎️</span>
+      </a>
 
       <div class="hero-orb hero-orb-main" aria-hidden="true"></div>
       <div class="hero-orb hero-orb-small" aria-hidden="true"></div>
