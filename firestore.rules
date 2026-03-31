@@ -1,11 +1,59 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /products/{productId} {
-      allow read: if true;
-      allow write: if request.auth != null
+    function isAdmin() {
+      return request.auth != null
         && request.auth.token.email != null
         && request.auth.token.email == "obrijang@gmail.com";
+    }
+
+    function validProduct() {
+      return request.resource.data.keys().hasAll(["type", "name", "details", "price", "image", "alt", "updatedAt"])
+        && request.resource.data.type is string
+        && request.resource.data.name is string
+        && request.resource.data.details is string
+        && request.resource.data.price is string
+        && request.resource.data.image is string
+        && request.resource.data.alt is string
+        && request.resource.data.type.size() > 0
+        && request.resource.data.name.size() > 0
+        && request.resource.data.type.size() <= 80
+        && request.resource.data.name.size() <= 160
+        && request.resource.data.details.size() <= 500
+        && request.resource.data.price.size() <= 40
+        && request.resource.data.image.size() <= 1200
+        && request.resource.data.alt.size() <= 160;
+    }
+
+    function validContactMessage() {
+      return request.resource.data.keys().hasAll(["name", "email", "phone", "message", "source", "createdAt"])
+        && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.phone is string
+        && request.resource.data.message is string
+        && request.resource.data.source is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.email.size() > 0
+        && request.resource.data.message.size() > 0
+        && request.resource.data.name.size() <= 80
+        && request.resource.data.email.size() <= 120
+        && request.resource.data.phone.size() <= 30
+        && request.resource.data.message.size() <= 2000
+        && request.resource.data.source == "website";
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create: if isAdmin()
+        && validProduct()
+        && request.resource.data.createdAt is timestamp;
+      allow update: if isAdmin() && validProduct();
+      allow delete: if isAdmin();
+    }
+
+    match /contactMessages/{messageId} {
+      allow create: if validContactMessage();
+      allow read, update, delete: if isAdmin();
     }
   }
 }

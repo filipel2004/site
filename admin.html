@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="admin-page">
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
     <header class="admin-header">
       <div class="container admin-header-inner">
         <div>
@@ -28,7 +29,7 @@
       </div>
     </header>
 
-    <main class="container admin-main">
+    <main id="main-content" class="container admin-main">
       <section class="admin-grid">
         <article class="admin-card">
           <h2 id="admin-form-title">Ajouter un produit</h2>
@@ -84,6 +85,29 @@
                 </tr>
               </thead>
               <tbody id="products-tbody"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="admin-card admin-card-full">
+          <div class="admin-card-head">
+            <h2>Messages de contact</h2>
+            <button type="button" class="btn btn-secondary" id="export-messages-btn">Exporter CSV</button>
+          </div>
+          <p class="admin-help">Demandes envoyées depuis le formulaire de contact du site.</p>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="messages-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th>Message</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="messages-tbody"></tbody>
             </table>
           </div>
         </article>

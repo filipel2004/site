@@ -5,9 +5,12 @@ const cancelButton = document.getElementById("cancel-edit-btn");
 const resetCatalogButton = document.getElementById("reset-catalog");
 const formTitle = document.getElementById("admin-form-title");
 const headerActions = document.querySelector(".admin-header-actions");
+const messagesTbody = document.getElementById("messages-tbody");
+const exportMessagesButton = document.getElementById("export-messages-btn");
 
 let backend = null;
 let products = [];
+let messages = [];
 let editingId = null;
 
 if (!window.BackendAPI || !window.BackendAPI.hasFirebaseConfig()) {
@@ -285,6 +288,106 @@ function renderTable() {
     .join("");
 }
 
+function formatMessageDate(value) {
+  if (!value) {
+    return "-";
+  }
+
+  const dateValue = typeof value.toDate === "function" ? value.toDate() : new Date(value);
+  if (Number.isNaN(dateValue.getTime())) {
+    return "-";
+  }
+
+  return new Intl.DateTimeFormat("fr-FR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  }).format(dateValue);
+}
+
+function getIsoDate(value) {
+  if (!value) {
+    return "";
+  }
+
+  const dateValue = typeof value.toDate === "function" ? value.toDate() : new Date(value);
+  if (Number.isNaN(dateValue.getTime())) {
+    return "";
+  }
+
+  return dateValue.toISOString();
+}
+
+function toCsvCell(value) {
+  const safe = String(value ?? "").replace(/\r?\n|\r/g, " ").replace(/"/g, '""');
+  return `"${safe}"`;
+}
+
+function exportMessagesToCsv() {
+  if (!messages.length) {
+    window.alert("Aucun message à exporter.");
+    return;
+  }
+
+  const headers = ["date_iso", "date_locale", "nom", "email", "telephone", "message"];
+  const rows = messages.map((message) => [
+    getIsoDate(message.createdAt),
+    formatMessageDate(message.createdAt),
+    message.name || "",
+    message.email || "",
+    message.phone || "",
+    message.message || ""
+  ]);
+
+  const csvLines = [headers, ...rows]
+    .map((line) => line.map((value) => toCsvCell(value)).join(";"))
+    .join("\n");
+
+  const csvContent = `\uFEFF${csvLines}`;
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  const datePart = new Date().toISOString().slice(0, 10);
+
+  link.href = url;
+  link.download = `messages-contact-${datePart}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  window.URL.revokeObjectURL(url);
+}
+
+function renderMessagesTable() {
+  if (!messagesTbody) {
+    return;
+  }
+
+  if (exportMessagesButton) {
+    exportMessagesButton.disabled = messages.length === 0;
+  }
+
+  if (!messages.length) {
+    messagesTbody.innerHTML = '<tr><td colspan="6">Aucun message.</td></tr>';
+    return;
+  }
+
+  messagesTbody.innerHTML = messages
+    .map(
+      (message) => `
+      <tr>
+        <td>${escapeHtml(formatMessageDate(message.createdAt))}</td>
+        <td>${escapeHtml(message.name || "-")}</td>
+        <td>${escapeHtml(message.email || "-")}</td>
+        <td>${escapeHtml(message.phone || "-")}</td>
+        <td class="admin-message-cell">${escapeHtml(message.message || "-")}</td>
+        <td class="admin-actions-cell">
+          <button type="button" class="admin-link danger" data-action="delete-message" data-id="${escapeHtml(message.id)}">Supprimer</button>
+        </td>
+      </tr>
+    `
+    )
+    .join("");
+}
+
 function resetForm() {
   form.reset();
   editingId = null;
@@ -304,6 +407,15 @@ function fillForm(product) {
 async function refreshProducts() {
   products = await window.BackendAPI.fetchProducts(backend.db);
   renderTable();
+}
+
+async function refreshMessages() {
+  if (!messagesTbody || !window.BackendAPI.fetchContactMessages) {
+    return;
+  }
+
+  messages = await window.BackendAPI.fetchContactMessages(backend.db);
+  renderMessagesTable();
 }
 
 async function importDefaultCatalog() {
@@ -436,6 +548,38 @@ tbody.addEventListener("click", (event) => {
   }
 });
 
+if (messagesTbody) {
+  messagesTbody.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-action='delete-message']");
+    if (!button) {
+      return;
+    }
+
+    const { id } = button.dataset;
+    const message = messages.find((item) => item.id === id);
+    if (!message) {
+      return;
+    }
+
+    const confirmed = window.confirm(`Supprimer le message de "${message.name || "Inconnu"}" ?`);
+    if (!confirmed) {
+      return;
+    }
+
+    window.BackendAPI
+      .deleteContactMessage(backend.db, id)
+      .then(() => refreshMessages())
+      .catch((error) => {
+        console.error(error);
+        window.alert("Suppression du message impossible.");
+      });
+  });
+}
+
+if (exportMessagesButton) {
+  exportMessagesButton.addEventListener("click", exportMessagesToCsv);
+}
+
 if (resetCatalogButton) {
   resetCatalogButton.addEventListener("click", () => {
     importDefaultCatalog();
@@ -472,5 +616,6 @@ backend.auth.signOut().finally(() => {
 
     setAdminUiVisible(true);
     await refreshProducts();
+    await refreshMessages();
   });
 });

@@ -1,5 +1,20 @@
 window.FIREBASE_SETTINGS = {
   allowedAdminEmail: "obrijang@gmail.com",
+  contactRecipientEmail: "obrijang@gmail.com",
+  publicContact: {
+    companyName: "Matériaux Pro Bâtiment",
+    phoneDisplay: "+33 0 00 00 00 00",
+    phoneLink: "+33000000000",
+    email: "contact@materiauxprobatiment.fr",
+    address: "Adresse à compléter",
+    hours: "Lun - Ven : 08:00 - 18:00"
+  },
+  analyticsMeasurementId: "",
+  emailjs: {
+    serviceId: "",
+    templateId: "",
+    publicKey: ""
+  },
   config: {
     apiKey: "AIzaSyCiA69k0w8m4I_nbdB23MXP5doGsn0Gv_0",
     authDomain: "sitegicu-admin.firebaseapp.com",

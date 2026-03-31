@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page introuvable - MatériauxPro</title>
+    <meta name="description" content="La page demandée est introuvable." />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .error-404 {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #1f2933 0%, #2e3c4a 62%, #c75a1f 100%);
+      }
+
+      .error-404-card {
+        width: min(700px, 100%);
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .error-404-code {
+        font-size: clamp(2.6rem, 8vw, 4.5rem);
+        font-weight: 800;
+        color: #c75a1f;
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .error-404-card h1 {
+        margin: 0.2rem 0 0.6rem;
+        color: #111827;
+      }
+
+      .error-404-card p {
+        color: #475569;
+        margin-bottom: 1rem;
+      }
+
+      .error-404-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 560px) {
+        .error-404-card {
+          padding: 1.2rem;
+        }
+
+        .error-404-actions .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+    <main id="main-content" class="error-404">
+      <article class="error-404-card">
+        <p class="error-404-code">404</p>
+        <h1>Page introuvable</h1>
+        <p>La page demandée n'existe plus ou l'adresse est incorrecte.</p>
+        <div class="error-404-actions">
+          <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+          <a href="index.html#contact" class="btn btn-secondary">Nous contacter</a>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>

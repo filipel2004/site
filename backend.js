@@ -94,6 +94,65 @@
     return docRef.id;
   }
 
+  async function saveContactMessage(db, payload) {
+    const now = window.firebase.firestore.FieldValue.serverTimestamp();
+    const data = {
+      name: String(payload.name || "").trim(),
+      email: String(payload.email || "").trim().toLowerCase(),
+      phone: String(payload.phone || "").trim(),
+      message: String(payload.message || "").trim(),
+      source: "website",
+      createdAt: now
+    };
+
+    const docRef = await db.collection("contactMessages").add(data);
+    return docRef.id;
+  }
+
+  async function fetchContactMessages(db) {
+    const snapshot = await db.collection("contactMessages").orderBy("createdAt", "desc").get();
+    return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  }
+
+  async function deleteContactMessage(db, id) {
+    await db.collection("contactMessages").doc(id).delete();
+  }
+
+  async function sendContactEmail(payload) {
+    const settings = window.FIREBASE_SETTINGS || {};
+    const emailJs = settings.emailjs || {};
+    const recipientEmail = String(settings.contactRecipientEmail || "").trim();
+
+    if (!emailJs.serviceId || !emailJs.templateId || !emailJs.publicKey || !recipientEmail) {
+      return { sent: false, reason: "email_not_configured" };
+    }
+
+    const response = await window.fetch("https://api.emailjs.com/api/v1.0/email/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        service_id: emailJs.serviceId,
+        template_id: emailJs.templateId,
+        user_id: emailJs.publicKey,
+        template_params: {
+          to_email: recipientEmail,
+          from_name: String(payload.name || ""),
+          from_email: String(payload.email || ""),
+          phone: String(payload.phone || ""),
+          message: String(payload.message || "")
+        }
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error("EmailJS request failed");
+    }
+
+    return { sent: true };
+  }
+
   async function deleteProduct(db, id) {
     await db.collection("products").doc(id).delete();
   }
@@ -105,6 +164,10 @@
     normalizeProduct,
     uploadImage,
     saveProduct,
+    saveContactMessage,
+    fetchContactMessages,
+    deleteContactMessage,
+    sendContactEmail,
     deleteProduct
   };
 })(window);

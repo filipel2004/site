@@ -47,6 +47,35 @@ p {
   margin-inline: auto;
 }
 
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 0.75rem;
+  z-index: 2000;
+  background: #111827;
+  color: #ffffff;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.45rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 0.75rem;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid rgba(199, 90, 31, 0.55);
+  outline-offset: 2px;
+}
+
 /* Hero Section */
 .hero {
   background: linear-gradient(135deg, #1f2933 0%, #374151 58%, #c75a1f 100%);
@@ -898,9 +927,21 @@ p {
 .contact-wrap {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 1.15rem;
   position: relative;
   z-index: 2;
+}
+
+.contact-left-column {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.contact-right-column {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
 }
 
 .section-contact .section-kicker {
@@ -923,6 +964,34 @@ p {
   z-index: 2;
 }
 
+.contact-info-card {
+  padding: 1rem 1.1rem;
+  max-width: 560px;
+}
+
+.contact-info-card p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.98rem;
+}
+
+.contact-info-card a,
+.contact-info-card span {
+  text-align: right;
+}
+
+.contact-info-card a {
+  color: #fbbf24;
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.contact-info-card a:hover {
+  opacity: 0.85;
+}
+
 .contact-card::before {
   background: linear-gradient(135deg, rgba(255, 119, 89, 0.2) 0%, transparent 100%);
 }
@@ -933,6 +1002,89 @@ p {
 
 .contact-card strong {
   color: #fff;
+}
+
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  max-width: 640px;
+}
+
+.contact-form-title {
+  margin: 0 0 0.8rem;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #f8fafc;
+  font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.78rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: #ffffff;
+  color: #1f2933;
+  font: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color-scheme: light;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #64748b;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid rgba(199, 90, 31, 0.35);
+  border-color: #c75a1f;
+}
+
+.contact-form-actions {
+  margin-top: 0.35rem;
+}
+
+.contact-form-actions .btn {
+  width: 100%;
+  font-size: 1rem;
+  padding-block: 0.8rem;
+}
+
+.contact-form-status {
+  min-height: 1.2rem;
+  margin: 0.1rem 0 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.contact-form-status.is-success {
+  color: #86efac;
+}
+
+.contact-form-status.is-error {
+  color: #fecaca;
+}
+
+.contact-honeypot {
+  display: none !important;
 }
 
 /* Footer */
@@ -946,6 +1098,146 @@ p {
 .footer-inner {
   text-align: center;
   font-size: 0.92rem;
+}
+
+/* Legal Pages */
+.legal-header {
+  background: linear-gradient(135deg, #1f2933 0%, #374151 58%, #c75a1f 100%);
+  color: white;
+  padding: 3rem 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.legal-header h1 {
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.legal-content {
+  max-width: 900px;
+  line-height: 1.8;
+  margin: 2rem auto;
+  padding-bottom: 3rem;
+}
+
+.legal-content section {
+  margin-bottom: 2.5rem;
+}
+
+.legal-content h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.8rem;
+  color: #1f2933;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.legal-content ul {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.legal-content li {
+  margin-bottom: 0.6rem;
+  color: #4b5563;
+}
+
+.legal-content a {
+  color: #c75a1f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.legal-content a:hover {
+  text-decoration: underline;
+}
+
+/* Cookie Consent Banner */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #1f2933 0%, #2a3642 100%);
+  color: white;
+  padding: 1.5rem;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s ease-out;
+}
+
+.cookie-banner.show {
+  display: flex;
+}
+
+.cookie-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cookie-text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cookie-text a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 0.8rem;
+  white-space: nowrap;
+}
+
+.cookie-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.cookie-btn-accept {
+  background: #c75a1f;
+  color: white;
+}
+
+.cookie-btn-accept:hover {
+  background: #a0481a;
+  transform: translateY(-2px);
+}
+
+.cookie-btn-decline {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cookie-btn-decline:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* Animations */
@@ -1106,6 +1398,29 @@ p {
   .mascot-wrapper {
     display: none;
   }
+
+  /* Cookie Banner Mobile */
+  .cookie-banner {
+    padding: 1rem;
+  }
+
+  .cookie-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .cookie-text {
+    font-size: 0.85rem;
+  }
+
+  .cookie-actions {
+    width: 100%;
+  }
+
+  .cookie-btn {
+    flex: 1;
+    width: 100%;
+  }
 }
 
 /* Tablet: 561px to 760px */
@@ -1198,8 +1513,19 @@ p {
 /* Desktop: 861px and above */
 @media (min-width: 860px) {
   .contact-wrap {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: start;
+    grid-template-columns: minmax(320px, 0.95fr) minmax(420px, 1.05fr);
+    gap: 1.6rem;
+    align-items: stretch;
+  }
+
+  .contact-left-column,
+  .contact-right-column {
+    height: 100%;
+  }
+
+  .contact-info-card,
+  .contact-form-card {
+    max-width: none;
   }
 }
 
@@ -1262,9 +1588,25 @@ p {
   padding: 1.15rem;
 }
 
+.admin-card-full {
+  grid-column: 1 / -1;
+}
+
 .admin-card h2 {
   margin: 0 0 0.8rem;
   color: #111827;
+}
+
+.admin-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.admin-card-head h2 {
+  margin: 0;
 }
 
 .admin-help {
@@ -1341,6 +1683,12 @@ p {
   white-space: nowrap;
 }
 
+.admin-message-cell {
+  max-width: 360px;
+  white-space: normal;
+  color: #334155;
+}
+
 .admin-link {
   border: 0;
   background: transparent;
@@ -1384,6 +1732,15 @@ p {
 
   .admin-header-actions,
   .admin-form-actions {
+    width: 100%;
+  }
+
+  .admin-card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #export-messages-btn {
     width: 100%;
   }
 
@@ -1467,6 +1824,35 @@ p {
 
   .admin-table td:not([colspan]):nth-child(5)::before {
     content: "Actions";
+  }
+
+  #messages-table td:first-child::before {
+    content: "Date";
+  }
+
+  #messages-table td:not([colspan]):nth-child(2)::before {
+    content: "Nom";
+  }
+
+  #messages-table td:not([colspan]):nth-child(3)::before {
+    content: "Email";
+  }
+
+  #messages-table td:not([colspan]):nth-child(4)::before {
+    content: "Téléphone";
+  }
+
+  #messages-table td:not([colspan]):nth-child(5)::before {
+    content: "Message";
+  }
+
+  #messages-table td:not([colspan]):nth-child(6)::before {
+    content: "Actions";
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #64748b;
   }
 
   .admin-table td:last-child {

@@ -8,17 +8,67 @@
       name="description"
       content="Matériaux Pro Bâtiment fournit des matériaux de construction de qualité pour les professionnels et les particuliers."
     />
+    <meta name="keywords" content="matériaux de construction, plaques de plâtre, BA13, accessoires chantier, fournisseur bâtiment" />
+    <meta name="author" content="Matériaux Pro Bâtiment" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Matériaux Pro Bâtiment" />
+    <meta property="og:title" content="Matériaux Pro Bâtiment" />
+    <meta property="og:description" content="Catalogue de matériaux de construction pour professionnels et particuliers." />
+    <meta property="og:url" content="https://www.materiauxprobatiment.fr/" />
+    <meta property="og:image" content="https://www.materiauxprobatiment.fr/photo/white.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Matériaux Pro Bâtiment" />
+    <meta name="twitter:description" content="Catalogue de matériaux de construction pour professionnels et particuliers." />
+    <meta name="twitter:image" content="https://www.materiauxprobatiment.fr/photo/white.jpg" />
+    <link rel="canonical" href="https://www.materiauxprobatiment.fr/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        "name": "Matériaux Pro Bâtiment",
+        "url": "https://www.materiauxprobatiment.fr/",
+        "image": "https://www.materiauxprobatiment.fr/photo/white.jpg",
+        "email": "contact@materiauxprobatiment.fr",
+        "telephone": "+33000000000",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Adresse à compléter",
+          "addressLocality": "Ville à compléter",
+          "postalCode": "00000",
+          "addressCountry": "FR"
+        },
+        "openingHours": "Mo-Fr 08:00-18:00",
+        "areaServed": "FR",
+        "sameAs": []
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Matériaux Pro Bâtiment",
+        "url": "https://www.materiauxprobatiment.fr/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.materiauxprobatiment.fr/#materiaux",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
     <header class="hero" id="accueil">
-      <nav class="navbar container">
+      <nav class="navbar container" aria-label="Navigation principale">
         <a href="#accueil" class="logo">Matériaux Pro Bâtiment</a>
         <ul class="nav-links">
           <li><a href="#services">Services</a></li>
@@ -83,7 +133,7 @@
       </div>
 
       <!-- Floating Phone Button (mobile only) -->
-      <a id="floating-phone" class="floating-phone-btn" href="tel:VOTRE_NUMERO_ICE" title="Appelez-nous">
+      <a id="floating-phone" class="floating-phone-btn" href="tel:+33000000000" title="Appelez-nous" aria-label="Appeler Matériaux Pro Bâtiment">
         <span class="phone-icon">☎️</span>
       </a>
 
@@ -123,7 +173,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <section id="services" class="section container">
         <!-- Decorative circles -->
         <div class="circle-decoration circle-md circle-accent" style="top: 50px; left: -150px; opacity: 0.15;"></div>
@@ -224,20 +274,49 @@
         <div class="circle-decoration circle-md circle-primary" style="bottom: -100px; right: 8%; opacity: 0.12;"></div>
         <div class="circle-decoration circle-sm circle-secondary" style="top: 100px; left: 15%; opacity: 0.1;"></div>
                 <div class="container contact-wrap">
-          <div>
+          <div class="contact-left-column">
             <p class="section-kicker">Contact</p>
             <h2>Parlons de votre prochain chantier</h2>
             <p>
               Contactez-nous pour un devis rapide ou pour vérifier la
               disponibilité d’un produit.
             </p>
+
+            <div class="contact-card contact-info-card">
+              <p><strong>Téléphone :</strong> <a id="contact-phone-link" href="tel:+33000000000">+33 0 00 00 00 00</a></p>
+              <p><strong>Email :</strong> <a id="contact-email-link" href="mailto:contact@materiauxprobatiment.fr">contact@materiauxprobatiment.fr</a></p>
+              <p><strong>Adresse :</strong> <span id="contact-address">Adresse à compléter</span></p>
+              <p><strong>Horaires :</strong> <span id="contact-hours">Lun - Ven : 08:00 - 18:00</span></p>
+            </div>
           </div>
 
-          <div class="contact-card">
-            <p><strong>Téléphone :</strong> De adaugat</p>
-            <p><strong>Email :</strong> De adaugat</p>
-            <p><strong>Adresse :</strong> De adaugat</p>
-            <p><strong>Horaires :</strong> De adaugat</p>
+          <div class="contact-right-column">
+            <div class="contact-card contact-form-card">
+              <h3 class="contact-form-title">Envoyer une demande</h3>
+              <form id="contact-form" class="contact-form" novalidate>
+                <label>
+                  Nom
+                  <input type="text" name="name" required maxlength="80" placeholder="Votre nom" />
+                </label>
+                <label>
+                  E-mail
+                  <input type="email" name="email" required maxlength="120" placeholder="vous@exemple.com" />
+                </label>
+                <label>
+                  Téléphone (optionnel)
+                  <input type="tel" name="phone" maxlength="30" placeholder="Votre numéro" />
+                </label>
+                <label>
+                  Message
+                  <textarea name="message" required maxlength="2000" rows="5" placeholder="Décrivez votre besoin..."></textarea>
+                </label>
+                <input type="text" name="company" class="contact-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <div class="contact-form-actions">
+                  <button type="submit" class="btn btn-primary" id="contact-submit-btn">Envoyer la demande</button>
+                </div>
+                <p id="contact-form-status" class="contact-form-status" aria-live="polite"></p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -245,9 +324,29 @@
 
     <footer class="footer">
       <div class="container footer-inner">
-        <p>© <span id="year"></span> Matériaux Pro Bâtiment. Tous droits réservés.</p>
+        <div>
+          <p>© <span id="year"></span> Matériaux Pro Bâtiment. Tous droits réservés.</p>
+        </div>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.5rem;">
+          <a href="privacy.html" style="color: #c6d0da; text-decoration: none; font-size: 0.9rem;">Politique de Confidentialité</a>
+          <a href="terms.html" style="color: #c6d0da; text-decoration: none; font-size: 0.9rem;">Conditions Générales</a>
+        </div>
       </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookie-banner">
+      <div class="cookie-content">
+        <div class="cookie-text">
+          Nous utilisons des cookies pour améliorer votre expérience. En continuant, vous acceptez notre 
+          <a href="privacy.html">politique de confidentialité</a>.
+        </div>
+        <div class="cookie-actions">
+          <button class="cookie-btn cookie-btn-decline" id="cookie-decline">Refuser</button>
+          <button class="cookie-btn cookie-btn-accept" id="cookie-accept">Accepter</button>
+        </div>
+      </div>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
