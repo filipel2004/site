@@ -457,6 +457,7 @@ function fillForm(product) {
 }
 
 async function refreshProducts() {
+  await syncDefaultCatalog();
   products = await window.BackendAPI.fetchProducts(backend.db);
   renderTable();
 }
@@ -470,9 +471,29 @@ async function refreshMessages() {
   renderMessagesTable();
 }
 
-async function importDefaultCatalog(options = {}) {
-  const { confirm = true, notify = true } = options;
-  if (confirm && !window.confirm("Importer le catalogue par défaut dans Firebase ? Les doublons seront ignorés.")) {
+async function syncDefaultCatalog() {
+  const currentProducts = await window.BackendAPI.fetchProducts(backend.db);
+  const existingKeys = new Set(currentProducts.map((product) => buildProductKey(product)));
+  let importedCount = 0;
+
+  for (const item of DEFAULT_CATALOG) {
+    const normalized = window.BackendAPI.normalizeProduct(item);
+    const key = buildProductKey(normalized);
+
+    if (existingKeys.has(key)) {
+      continue;
+    }
+
+    await window.BackendAPI.saveProduct(backend.db, normalized, null);
+    existingKeys.add(key);
+    importedCount += 1;
+  }
+
+  return importedCount;
+}
+
+async function importDefaultCatalog() {
+  if (!window.confirm("Importer le catalogue par défaut dans Firebase ? Les doublons seront ignorés.")) {
     return;
   }
 
@@ -481,41 +502,12 @@ async function importDefaultCatalog(options = {}) {
   resetCatalogButton.textContent = "Import en cours...";
 
   try {
-    const currentProducts = await window.BackendAPI.fetchProducts(backend.db);
-    const existingKeys = new Set(currentProducts.map((product) => buildProductKey(product)));
-    let importedCount = 0;
-
-    for (const item of DEFAULT_CATALOG) {
-      const normalized = window.BackendAPI.normalizeProduct(item);
-      const key = buildProductKey(normalized);
-
-      if (existingKeys.has(key)) {
-        continue;
-      }
-
-      await window.BackendAPI.saveProduct(backend.db, normalized, null);
-      existingKeys.add(key);
-      importedCount += 1;
-    }
-
+    const importedCount = await syncDefaultCatalog();
     await refreshProducts();
-
-    if (!notify) {
-      return importedCount;
-    }
-
-    if (importedCount === 0) {
-      window.alert("Le catalogue par défaut est déjà importé.");
-      return;
-    }
-
-    window.alert(`${importedCount} produit(s) importé(s) avec succès.`);
+    window.alert(importedCount ? `${importedCount} produit(s) importé(s) avec succès.` : "Le catalogue par défaut est déjà importé.");
   } catch (error) {
     console.error(error);
-    if (notify) {
-      window.alert("Impossible d'importer le catalogue par défaut.");
-    }
-    return 0;
+    window.alert("Impossible d'importer le catalogue par défaut.");
   } finally {
     resetCatalogButton.disabled = false;
     resetCatalogButton.textContent = originalLabel;
@@ -674,7 +666,6 @@ backend.auth.signOut().finally(() => {
     }
 
     setAdminUiVisible(true);
-    await importDefaultCatalog({ confirm: false, notify: false });
     await refreshProducts();
     await refreshMessages();
   });
