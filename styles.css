@@ -531,11 +531,12 @@ select:focus-visible,
   border-bottom: 1px solid var(--border);
 }
 
-.materials-section {
+.section.materials-section {
+  background-color: #1f2933;
   background: linear-gradient(135deg, #1f2933 0%, #374151 58%, #c75a1f 100%);
 }
 
-.materials-section .section-heading h2 {
+.section.materials-section .section-heading h2 {
   color: #ffffff;
 }
 
