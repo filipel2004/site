@@ -118,6 +118,42 @@
       price: "30,00 €",
       image: "photo/sac.jpg",
       alt: "Lot de 100 sacs à gravats réutilisables"
+    },
+    {
+      id: "p14",
+      type: "Rail",
+      name: "Lot de 10 rails de 48 en 3 m NF, SEMIN",
+      details: "Largeur : 48 mm | Longueur : 3 m | Usage : Cloison",
+      price: "20,00 €",
+      image: "",
+      alt: "Lot de 10 rails de 48 en 3 m NF, SEMIN"
+    },
+    {
+      id: "p15",
+      type: "Montant",
+      name: "Montant de 48, L. 3 m",
+      details: "Largeur : 48 mm | Longueur : 3 m | Usage : Cloison",
+      price: "25,00 €",
+      image: "",
+      alt: "Montant de 48, L. 3 m"
+    },
+    {
+      id: "p16",
+      type: "Fourrure",
+      name: "Lot de 10 fourrures de 47 en 3 m NF, SEMIN",
+      details: "Largeur : 47 mm | Longueur : 3 m | Usage : Plafond et cloison",
+      price: "23,00 €",
+      image: "",
+      alt: "Lot de 10 fourrures de 47 en 3 m NF, SEMIN"
+    },
+    {
+      id: "p17",
+      type: "Cornière",
+      name: "Cornière acier CR2 24 x 34 mm en 3 m",
+      details: "Largeur : 34 mm | Longueur : 3 m | Usage : Mise en périphérie",
+      price: "25,00 €",
+      image: "",
+      alt: "Cornière acier CR2 24 x 34 mm en 3 m"
     }
   ];
 
@@ -200,6 +236,7 @@
     loadProducts,
     saveProducts,
     resetProducts,
-    normalizeProduct
+    normalizeProduct,
+    getDefaultProducts: () => cloneProducts(DEFAULT_PRODUCTS)
   };
 })(window);

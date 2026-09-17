@@ -107,9 +107,7 @@ function renderProducts(products) {
 		.map(
 			(product) => `
 			<article class="material-card" data-product-name="${escapeHtml(product.name)}" data-product-type="${escapeHtml(product.type)}" data-product-details="${escapeHtml(product.details)}">
-				<div class="material-media">
-					<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.alt || product.name)}" loading="lazy" decoding="async" />
-				</div>
+				<div class="material-media">${product.image ? `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.alt || product.name)}" loading="lazy" decoding="async" />` : ""}</div>
 				<div class="material-content">
 					<p class="type">${escapeHtml(product.type)}</p>
 					<h3>${escapeHtml(product.name)}</h3>
@@ -415,6 +413,10 @@ async function loadAndRenderProducts() {
 	try {
 		const { db } = window.BackendAPI.initFirebase();
 		allProducts = await window.BackendAPI.fetchProducts(db);
+		const defaultProducts = window.ProductStore ? window.ProductStore.getDefaultProducts() : [];
+		const existingProductKeys = new Set(allProducts.map((product) => `${product.name}|${product.details}`));
+		const localSupplements = defaultProducts.filter((product) => product.id.startsWith("p1") && !existingProductKeys.has(`${product.name}|${product.details}`));
+		allProducts = allProducts.concat(localSupplements);
 		renderProducts(allProducts);
 		initializeSearch();
 		setTimeout(scrollToHashTarget, 60);
