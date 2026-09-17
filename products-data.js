@@ -125,7 +125,7 @@
       name: "Lot de 10 rails de 48 en 3 m NF, SEMIN",
       details: "Largeur : 48 mm | Longueur : 3 m | Usage : Cloison",
       price: "20,00 €",
-      image: "",
+        image: "photo/rail.jpg",
       alt: "Lot de 10 rails de 48 en 3 m NF, SEMIN"
     },
     {
@@ -134,7 +134,7 @@
       name: "Montant de 48, L. 3 m",
       details: "Largeur : 48 mm | Longueur : 3 m | Usage : Cloison",
       price: "25,00 €",
-      image: "",
+        image: "photo/montant_m48.jpg",
       alt: "Montant de 48, L. 3 m"
     },
     {
@@ -143,7 +143,7 @@
       name: "Lot de 10 fourrures de 47 en 3 m NF, SEMIN",
       details: "Largeur : 47 mm | Longueur : 3 m | Usage : Plafond et cloison",
       price: "23,00 €",
-      image: "",
+        image: "photo/lot10fourrers.jpg",
       alt: "Lot de 10 fourrures de 47 en 3 m NF, SEMIN"
     },
     {
@@ -152,7 +152,7 @@
       name: "Cornière acier CR2 24 x 34 mm en 3 m",
       details: "Largeur : 34 mm | Longueur : 3 m | Usage : Mise en périphérie",
       price: "25,00 €",
-      image: "",
+        image: "photo/corniere.jpg",
       alt: "Cornière acier CR2 24 x 34 mm en 3 m"
     }
   ];
