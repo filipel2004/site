@@ -4,6 +4,7 @@ const saveButton = document.getElementById("save-product-btn");
 const cancelButton = document.getElementById("cancel-edit-btn");
 const resetCatalogButton = document.getElementById("reset-catalog");
 const formTitle = document.getElementById("admin-form-title");
+const imagePreview = document.getElementById("admin-image-preview");
 const headerActions = document.querySelector(".admin-header-actions");
 const messagesTbody = document.getElementById("messages-tbody");
 const exportMessagesButton = document.getElementById("export-messages-btn");
@@ -140,6 +141,46 @@ const DEFAULT_CATALOG = [
     price: "30,00 €",
     image: "photo/sac.jpg",
     alt: "Lot de 100 sacs à gravats réutilisables"
+  },
+  {
+    type: "Rail",
+    name: "Lot de 10 rails de 48 en 3 m NF, SEMIN",
+    details: "Largeur : 48 mm | Longueur : 3 m | Usage : Cloison",
+    price: "20,00 €",
+    image: "photo/rail.jpg",
+    alt: "Lot de 10 rails de 48 en 3 m NF, SEMIN"
+  },
+  {
+    type: "Montant",
+    name: "Montant de 48, L. 3 m",
+    details: "Largeur : 48 mm | Longueur : 3 m | Usage : Cloison",
+    price: "25,00 €",
+    image: "photo/montant_m48.jpg",
+    alt: "Montant de 48, L. 3 m"
+  },
+  {
+    type: "Fourrure",
+    name: "Lot de 10 fourrures de 47 en 3 m NF, SEMIN",
+    details: "Largeur : 47 mm | Longueur : 3 m | Usage : Plafond et cloison",
+    price: "23,00 €",
+    image: "photo/lot10fourrers.jpg",
+    alt: "Lot de 10 fourrures de 47 en 3 m NF, SEMIN"
+  },
+  {
+    type: "Cornière",
+    name: "Cornière acier CR2 24 x 34 mm en 3 m",
+    details: "Largeur : 34 mm | Longueur : 3 m | Usage : Mise en périphérie",
+    price: "25,00 €",
+    image: "photo/corniere.jpg",
+    alt: "Cornière acier CR2 24 x 34 mm en 3 m"
+  },
+  {
+    type: "Isolation",
+    name: "Laine de verre toutes épaisseurs",
+    details: "Prix par rouleau",
+    price: "35,00 €",
+    image: "photo/laine.jpg",
+    alt: "Laine de verre toutes épaisseurs"
   }
 ];
 
@@ -277,7 +318,7 @@ function renderTable() {
         </td>
         <td>${escapeHtml(product.type)}</td>
         <td>${escapeHtml(product.price)}</td>
-        <td class="admin-image-cell">${escapeHtml(product.image)}</td>
+        <td class="admin-image-cell">${product.image ? `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.alt || product.name)}" class="admin-table-image" /><span>${escapeHtml(product.image)}</span>` : "Aucune image"}</td>
         <td class="admin-actions-cell">
           <button type="button" class="admin-link" data-action="edit" data-id="${escapeHtml(product.id)}">Modifier</button>
           <button type="button" class="admin-link danger" data-action="delete" data-id="${escapeHtml(product.id)}">Supprimer</button>
@@ -393,6 +434,16 @@ function resetForm() {
   editingId = null;
   saveButton.textContent = "Ajouter";
   formTitle.textContent = "Ajouter un produit";
+  updateImagePreview("");
+}
+
+function updateImagePreview(imagePath) {
+  if (!imagePreview) {
+    return;
+  }
+
+  imagePreview.hidden = !imagePath;
+  imagePreview.src = imagePath || "";
 }
 
 function fillForm(product) {
@@ -402,6 +453,7 @@ function fillForm(product) {
   form.price.value = product.price;
   form.image.value = product.image && !product.image.startsWith("data:") ? product.image : "";
   form.alt.value = product.alt;
+  updateImagePreview(product.image || "");
 }
 
 async function refreshProducts() {

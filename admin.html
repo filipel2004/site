@@ -57,6 +57,7 @@
             <label>
               Image (chemin optionnel)
               <input type="text" name="image" placeholder="Ex: photo/green.jpg" />
+              <img id="admin-image-preview" class="admin-image-preview" alt="Aperçu de l'image du produit" hidden />
             </label>
             <label>
               Texte alternatif image
@@ -71,7 +72,10 @@
         </article>
 
         <article class="admin-card">
-          <h2>Liste des produits</h2>
+          <div class="admin-card-head">
+            <h2>Liste des produits</h2>
+            <button type="button" class="btn btn-secondary" id="reset-catalog">Importer le catalogue</button>
+          </div>
           <p class="admin-help">Les modifications sont enregistrées dans la base de données Firebase.</p>
           <div class="admin-table-wrap">
             <table class="admin-table" id="products-table">
