@@ -152,7 +152,7 @@
       name: "Cornière acier CR2 24 x 34 mm en 3 m",
       details: "Largeur : 34 mm | Longueur : 3 m | Usage : Mise en périphérie",
       price: "25,00 €",
-        image: "photo/corniere.jpg",
+      image: "photo/corniere.jpg",
       alt: "Cornière acier CR2 24 x 34 mm en 3 m"
     },
     {
@@ -161,7 +161,7 @@
       name: "Laine de verre toutes épaisseurs",
       details: "Prix par rouleau",
       price: "35,00 €",
-      image: "",
+      image: "photo/laine.jpg",
       alt: "Laine de verre toutes épaisseurs"
     }
   ];

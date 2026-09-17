@@ -3,8 +3,8 @@ window.FIREBASE_SETTINGS = {
   contactRecipientEmail: "obrijang@gmail.com",
   publicContact: {
     companyName: "Matériaux Pro Bâtiment",
-    phoneDisplay: "+33 0 00 00 00 00",
-    phoneLink: "+33000000000",
+    phoneDisplay: "+33 7 58 23 13 04",
+    phoneLink: "+33758231304",
     email: "contact@materiauxprobatiment.fr",
     address: "34 Rte d'Aulnay, 93140 Bondy",
     hours: "Lun - Ven : 08:00 - 18:00"
