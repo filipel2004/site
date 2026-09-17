@@ -470,9 +470,9 @@ async function refreshMessages() {
   renderMessagesTable();
 }
 
-async function importDefaultCatalog() {
-  const confirmed = window.confirm("Importer le catalogue par défaut dans Firebase ? Les doublons seront ignorés.");
-  if (!confirmed) {
+async function importDefaultCatalog(options = {}) {
+  const { confirm = true, notify = true } = options;
+  if (confirm && !window.confirm("Importer le catalogue par défaut dans Firebase ? Les doublons seront ignorés.")) {
     return;
   }
 
@@ -500,6 +500,10 @@ async function importDefaultCatalog() {
 
     await refreshProducts();
 
+    if (!notify) {
+      return importedCount;
+    }
+
     if (importedCount === 0) {
       window.alert("Le catalogue par défaut est déjà importé.");
       return;
@@ -508,7 +512,10 @@ async function importDefaultCatalog() {
     window.alert(`${importedCount} produit(s) importé(s) avec succès.`);
   } catch (error) {
     console.error(error);
-    window.alert("Impossible d'importer le catalogue par défaut.");
+    if (notify) {
+      window.alert("Impossible d'importer le catalogue par défaut.");
+    }
+    return 0;
   } finally {
     resetCatalogButton.disabled = false;
     resetCatalogButton.textContent = originalLabel;
@@ -667,6 +674,7 @@ backend.auth.signOut().finally(() => {
     }
 
     setAdminUiVisible(true);
+    await importDefaultCatalog({ confirm: false, notify: false });
     await refreshProducts();
     await refreshMessages();
   });
