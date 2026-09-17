@@ -76,7 +76,11 @@ select:focus-visible,
   outline-offset: 2px;
 }
 
-/* Hero Section */
+/* Public header */
+.public-header {
+  background: #1f2933;
+}
+
 .hero {
   background: linear-gradient(135deg, #1f2933 0%, #374151 58%, #c75a1f 100%);
   position: relative;

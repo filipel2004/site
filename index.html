@@ -67,203 +67,29 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Aller au contenu principal</a>
-    <header class="hero" id="accueil">
+    <header class="public-header">
       <nav class="navbar container" aria-label="Navigation principale">
-        <a href="#accueil" class="logo">Matériaux Pro Bâtiment</a>
+        <a href="#materiaux" class="logo">Matériaux Pro Bâtiment</a>
         <ul class="nav-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#pourquoi-nous">Pourquoi nous</a></li>
           <li><a href="#materiaux">Matériaux</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-
-      <!-- Search Bar at Top -->
-      <div class="search-header-container">
-        <div class="search-wrapper">
-          <input 
-            type="text" 
-            id="product-search" 
-            class="search-bar-header" 
-            placeholder="Rechercher des produits..." 
-            aria-label="Rechercher les produits"
-          />
-          <button type="button" id="search-trigger" class="search-trigger" aria-label="Lancer la recherche">
-            🔍
-          </button>
-          <ul class="search-suggestions" id="search-suggestions"></ul>
-        </div>
-      </div>
-
-      <!-- Mascot SVG (desktop only) -->
-      <div class="mascot-wrapper">
-        <svg class="mascot" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="placoFace" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffffff" />
-              <stop offset="1" stop-color="#edf2f7" />
-            </linearGradient>
-            <linearGradient id="placoSide" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#8bb5e4" />
-              <stop offset="1" stop-color="#5f8fca" />
-            </linearGradient>
-          </defs>
-
-          <ellipse cx="80" cy="165" rx="34" ry="8" fill="#000" opacity="0.16" />
-
-          <rect x="42" y="24" width="76" height="118" rx="14" fill="url(#placoFace)" stroke="#d1d9e3" stroke-width="2" />
-          <rect x="108" y="24" width="10" height="118" rx="0" fill="url(#placoSide)" opacity="0.95" />
-          <rect x="48" y="30" width="58" height="7" rx="3.5" fill="#f8fafc" opacity="0.8" />
-
-          <circle cx="69" cy="76" r="3.4" fill="#334155" />
-          <circle cx="91" cy="76" r="3.4" fill="#334155" />
-          <circle cx="70" cy="75" r="1" fill="#ffffff" />
-          <circle cx="92" cy="75" r="1" fill="#ffffff" />
-          <path d="M67 95c4 4 22 4 26 0" stroke="#475569" stroke-width="2.2" fill="none" stroke-linecap="round" />
-
-          <rect x="35" y="84" width="10" height="22" rx="5" fill="#f3f4f6" stroke="#cbd5e1" stroke-width="1" />
-          <rect x="115" y="84" width="10" height="22" rx="5" fill="#f3f4f6" stroke="#cbd5e1" stroke-width="1" />
-
-          <rect x="58" y="142" width="14" height="16" rx="5" fill="#5f8fca" />
-          <rect x="88" y="142" width="14" height="16" rx="5" fill="#5f8fca" />
-        </svg>
-        <div class="mascot-tooltip">
-          🧱 Besoin d'aide? Explorez nos matériaux!
-        </div>
-      </div>
-
-      <!-- Floating Phone Button (mobile only) -->
-      <a id="floating-phone" class="floating-phone-btn" href="tel:+33000000000" title="Appelez-nous" aria-label="Appeler Matériaux Pro Bâtiment">
-        <span class="phone-icon">☎️</span>
-      </a>
-
-      <div class="hero-orb hero-orb-main" aria-hidden="true"></div>
-      <div class="hero-orb hero-orb-small" aria-hidden="true"></div>
-      <div class="hero-orb hero-orb-mid" aria-hidden="true"></div>
-
-      <div class="hero-content container">
-        <div class="hero-text">
-          <p class="badge">Fournisseur de confiance</p>
-          <h1>Bâtissez mieux avec nos matériaux premium.</h1>
-          <p>
-            Nous accompagnons artisans, entreprises et particuliers avec une gamme
-            complète de plaques, accessoires et consommables pour réussir vos chantiers.
-          </p>
-          <div class="hero-actions">
-            <a href="#materiaux" class="btn btn-primary">Accéder au catalogue</a>
-            <a href="#contact" class="btn btn-secondary">Obtenir un devis</a>
-          </div>
-        </div>
-
-        <!-- Stats Section -->
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-number">500+</div>
-            <div class="stat-label">Projets complétés</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">1000+</div>
-            <div class="stat-label">Clients satisfaits</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">4.8/5</div>
-            <div class="stat-label">Note moyenne</div>
-          </div>
-        </div>
-      </div>
     </header>
 
     <main id="main-content">
-      <section id="services" class="section container">
-        <!-- Decorative circles -->
-        <div class="circle-decoration circle-md circle-accent" style="top: 50px; left: -150px; opacity: 0.15;"></div>
-        <div class="circle-decoration circle-lg circle-secondary" style="bottom: -100px; right: -80px; opacity: 0.12;"></div>
-        
-        <div class="section-heading">
-          <p class="section-kicker">Services</p>
-          <h2>Des solutions simples pour vos besoins chantier</h2>
-        </div>
-        <div class="cards-grid">
-          <article class="card">
-            <h3>Vente de matériaux</h3>
-            <p>
-              Large sélection de produits pour cloisons, isolation et finition,
-              toujours disponibles en stock.
-            </p>
-            <a href="#materiaux" class="card-link">Voir le catalogue →</a>
-          </article>
-          <article class="card">
-            <h3>Conseil personnalisé</h3>
-            <p>
-              Aide au choix des bons matériaux selon votre projet, votre budget
-              et vos contraintes techniques.
-            </p>
-            <a href="#contact" class="card-link">Nous contacter →</a>
-          </article>
-          <article class="card">
-            <h3>Préparation de commande</h3>
-            <p>
-              Commandes organisées et prêtes rapidement pour vous faire gagner
-              du temps sur le chantier.
-            </p>
-            <a href="#contact" class="card-link">Demander →</a>
-          </article>
-        </div>
-      </section>
-
-      <section id="pourquoi-nous" class="section section-soft">
-        <!-- Decorative circles -->
-        <div class="circle-decoration circle-lg circle-primary" style="top: -100px; right: 5%; opacity: 0.15;"></div>
-        <div class="circle-decoration circle-md circle-accent" style="bottom: 10%; left: 8%; opacity: 0.12;"></div>
-        <div class="circle-decoration circle-sm circle-secondary" style="top: 30%; right: 15%; opacity: 0.1;"></div>
-        
-        <div class="container">
-          <div class="section-heading">
-            <p class="section-kicker">Pourquoi nous</p>
-            <h2>Un partenaire fiable pour vos travaux</h2>
-          </div>
-          <div class="reasons-grid">
-            <article class="reason-item">
-              <h3>Qualité vérifiée</h3>
-              <p>
-                Nous sélectionnons des marques reconnues pour garantir la
-                durabilité de vos réalisations.
-              </p>
-            </article>
-            <article class="reason-item">
-              <h3>Prix compétitifs</h3>
-              <p>
-                Une politique tarifaire claire pour vous proposer le meilleur
-                rapport qualité-prix.
-              </p>
-            </article>
-            <article class="reason-item">
-              <h3>Disponibilité</h3>
-              <p>
-                Des références essentielles en stock pour éviter les retards sur
-                vos chantiers.
-              </p>
-            </article>
-            <article class="reason-item">
-              <h3>Service client réactif</h3>
-              <p>
-                Une équipe à l'écoute pour répondre rapidement à vos demandes et
-                urgences.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section id="materiaux" class="section container">
-        <!-- Decorative circles -->
-        <div class="circle-decoration circle-lg circle-primary" style="top: -120px; right: 10%; opacity: 0.13;"></div>
-        <div class="circle-decoration circle-md circle-accent" style="bottom: 5%; left: 5%; opacity: 0.14;"></div>
-        <div class="circle-decoration circle-sm circle-secondary" style="top: 200px; right: 2%; opacity: 0.11;"></div>
-        
         <div class="section-heading">
           <p class="section-kicker">Catalogue</p>
           <h2>Matériaux disponibles</h2>
+        </div>
+
+        <div class="search-header-container">
+          <div class="search-wrapper">
+            <input type="text" id="product-search" class="search-bar-header" placeholder="Rechercher des produits..." aria-label="Rechercher les produits" />
+            <button type="button" id="search-trigger" class="search-trigger" aria-label="Lancer la recherche">Rechercher</button>
+            <ul class="search-suggestions" id="search-suggestions"></ul>
+          </div>
         </div>
 
         <div class="materials-grid" id="materials-grid"></div>
