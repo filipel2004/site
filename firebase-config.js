@@ -6,7 +6,7 @@ window.FIREBASE_SETTINGS = {
     phoneDisplay: "+33 0 00 00 00 00",
     phoneLink: "+33000000000",
     email: "contact@materiauxprobatiment.fr",
-    address: "Adresse à compléter",
+    address: "34 Rte d'Aulnay, 93140 Bondy",
     hours: "Lun - Ven : 08:00 - 18:00"
   },
   analyticsMeasurementId: "",

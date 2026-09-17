@@ -154,6 +154,15 @@
       price: "25,00 €",
         image: "photo/corniere.jpg",
       alt: "Cornière acier CR2 24 x 34 mm en 3 m"
+    },
+    {
+      id: "p18",
+      type: "Isolation",
+      name: "Laine de verre toutes épaisseurs",
+      details: "Prix par rouleau",
+      price: "35,00 €",
+      image: "",
+      alt: "Laine de verre toutes épaisseurs"
     }
   ];
 
