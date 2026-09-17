@@ -302,6 +302,15 @@ function initializePublicContactInfo() {
 		phoneLinkElement.setAttribute("aria-label", `Appeler ${companyName}`);
 	}
 
+	const secondPhoneDisplay = String(contact.phoneSecondDisplay || "");
+	const secondPhoneLink = String(contact.phoneSecondLink || "").replace(/\s+/g, "");
+	const secondPhoneLinkElement = document.getElementById("contact-phone-second-link");
+	if (secondPhoneLinkElement && secondPhoneDisplay && secondPhoneLink) {
+		secondPhoneLinkElement.textContent = secondPhoneDisplay;
+		secondPhoneLinkElement.setAttribute("href", `tel:${secondPhoneLink}`);
+		secondPhoneLinkElement.setAttribute("aria-label", `Appeler ${companyName}`);
+	}
+
 	const emailLinkElement = document.getElementById("contact-email-link");
 	if (emailLinkElement) {
 		emailLinkElement.textContent = email;
